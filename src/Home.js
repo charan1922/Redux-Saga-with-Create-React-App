@@ -1,23 +1,41 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { requestHelloWorld } from "./actions";
+import { requestApiData } from "./actions";
+
+// const person = ({ data }) => (
+//   <div key={data.is.value}>
+//     <h1>{data.gender}</h1>
+//   </div>
+// );
 
 class Home extends Component {
   componentDidMount() {
-    this.props.requestHelloWorld();
+    this.props.requestApiData();
   }
 
   render() {
-    return <div>Home {this.props.helloWorld}</div>;
+    console.log(this.props.data.results);
+
+    return (
+      <div>
+        {/* {this.props.data.results.map(
+          datas => {
+            console.log(datas);
+          }
+          // <person x={data} />;
+        )} */}
+        Home
+      </div>
+    );
   }
 }
 
 const mapStateToProps = state => ({
-  helloWorld: state.helloWorld
+  data: state.data
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ requestHelloWorld }, dispatch);
+  bindActionCreators({ requestApiData }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
