@@ -3,29 +3,21 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { requestApiData } from "./actions";
 
-// const person = ({ data }) => (
-//   <div key={data.is.value}>
-//     <h1>{data.gender}</h1>
-//   </div>
-// );
-
 class Home extends Component {
   componentDidMount() {
     this.props.requestApiData();
   }
 
   render() {
-    console.log(this.props.data.results);
+    // const { gender, picture } = this.props.data.results;
+    if (!this.props.data.results) return <div>Loading ...</div>;
+    let ab = [...this.props.data.results];
+    console.log(ab, "api");
 
     return (
       <div>
-        {/* {this.props.data.results.map(
-          datas => {
-            console.log(datas);
-          }
-          // <person x={data} />;
-        )} */}
-        Home
+        <h1>{"home"}</h1>
+        <img src={ab[0].picture.large} />
       </div>
     );
   }
